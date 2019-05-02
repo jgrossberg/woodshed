@@ -9,18 +9,19 @@ import CustomForm from '../components/CommentForm';
 
 const { Title, Paragraph } = Typography;
 
-class Popular extends React.Component {
+class LessonDetail extends React.Component {
 
     state = {
-        response: {},
+        lesson: {},
 
     }
 
     componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/lessons/1`)
+        const lessonID = this.props.match.params.lessonID;
+        axios.get(`http://127.0.0.1:8000/api/lessons/${lessonID}/`)
             .then(res=> {
                 this.setState({
-                    response: res.data,
+                    lesson: res.data,
                 });
                 // console.log(res.data)
                 // console.log(res.headers)
@@ -31,10 +32,10 @@ class Popular extends React.Component {
         return (
             <div> 
                 <Typography>
-                    <Title>{this.state.response.title}</Title>
+                    <Title>{this.state.lesson.title}</Title>
                     <Paragraph>
 
-                    {this.state.response.content}
+                    {this.state.lesson.content}
                     </Paragraph>
                 </Typography>
                 <Divider>Comments</Divider>
@@ -46,5 +47,5 @@ class Popular extends React.Component {
 };
 
 
-export default Popular
+export default LessonDetail
 

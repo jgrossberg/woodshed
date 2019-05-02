@@ -15,6 +15,7 @@ class Lesson(models.Model):
 	def __str__(self):
 		return self.title
 
+
 class Log(models.Model):
 	owner = models.ForeignKey(User,
 		on_delete=models.CASCADE,
@@ -32,7 +33,7 @@ class Log(models.Model):
 
 class Comment(models.Model):
 	author = models.CharField(max_length=50)
-	email = models.CharField(max_length=100)
+	author_email = models.CharField(max_length=100)
 	lesson = models.ForeignKey(Lesson,
 		on_delete=models.CASCADE,
 		null=True
