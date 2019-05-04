@@ -11,10 +11,11 @@ class UserSerializer(serializers.Serializer):
 
 class LessonSerializer(serializers.ModelSerializer):
 	owner = UserSerializer(many=False, read_only=True)
+	
+	
 	class Meta:
 		model = Lesson
-		# comments = Lesson.get_comments()
-		# print(comments)
+
 		fields = (
 			'id',
 			'created_by',
@@ -23,6 +24,10 @@ class LessonSerializer(serializers.ModelSerializer):
 			'owner',
 			'content',
             'votes',
+			'num_logs',
+			'num_comments',
+			'author_name',
+			'comments'
 		)
 		# depth = 1
 
@@ -44,7 +49,7 @@ class CommentSerializer(serializers.ModelSerializer):
 		model = Comment
 		fields = (
 			'id',
-			'author',
+			'author_name',
 			'author_email',
             'lesson',
 			'content',

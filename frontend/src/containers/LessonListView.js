@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import Lessons from '../components/Lesson';
-// import CustomForm from '../components/Form'
 
 class LessonList extends React.Component {
 
@@ -16,7 +15,6 @@ class LessonList extends React.Component {
                 this.setState({
                     lessons: res.data
                 });
-                console.log(res.data);
             })
     }
 

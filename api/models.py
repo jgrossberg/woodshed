@@ -15,6 +15,35 @@ class Lesson(models.Model):
 	def __str__(self):
 		return self.title
 
+	def num_logs(self):
+		results = Log.objects.filter(lesson = self.id)
+		return len(results)
+
+	def num_comments(self):
+		results = Comment.objects.filter(lesson = self.id)
+		return len(results)
+
+	def author_name(self):
+		author = User.objects.filter(id = self.created_by.id)
+		return author[0].first_name + ' ' + author[0].last_name		
+	 
+	def comments(self):
+		query = list(Comment.objects.filter(lesson=self.id))
+		comment_list = []
+		print(len(query))
+		for c in query:
+			author = c.author_name
+			content = c.content
+			comment = {
+				'author_name' : author, 'content' : content
+			}
+			comment_list.append(comment)
+
+		return comment_list
+
+		# return [{'id' : 1, 'comment' : 'comment1'}, 
+		# 		{'id' : 2, 'comment' : 'comment2'}]
+
 
 class Log(models.Model):
 	owner = models.ForeignKey(User,
@@ -32,7 +61,7 @@ class Log(models.Model):
 		return (str(self.owner) + '-' + str(self.id))
 
 class Comment(models.Model):
-	author = models.CharField(max_length=50)
+	author_name = models.CharField(max_length=50)
 	author_email = models.CharField(max_length=100)
 	lesson = models.ForeignKey(Lesson,
 		on_delete=models.CASCADE,
@@ -43,4 +72,4 @@ class Comment(models.Model):
 	votes = models.IntegerField(default=0)
 
 	def __str__(self):
-		return (str(self.lesson) + '-' + str(self.author))
+		return (str(self.lesson) + '-' + str(self.author_name))

@@ -1,21 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Typography , Divider} from 'antd';
+import { Divider} from 'antd';
 
 import Comments from '../components/Comment';
 import CustomForm from '../components/CommentForm';
+import LessonCard from '../components/LessonCard';
 
-
-const { Title, Paragraph } = Typography;
 
 class LessonDetail extends React.Component {
 
     state = {
         lesson: {},
-
     }
-
+    
     componentDidMount() {
         const lessonID = this.props.match.params.lessonID;
         axios.get(`http://127.0.0.1:8000/api/lessons/${lessonID}/`)
@@ -23,29 +21,22 @@ class LessonDetail extends React.Component {
                 this.setState({
                     lesson: res.data,
                 });
-                // console.log(res.data)
-                // console.log(res.headers)
             })
     }
 
     render () {
+        console.log(this.state)
         return (
             <div> 
-                <Typography>
-                    <Title>{this.state.lesson.title}</Title>
-                    <Paragraph>
-
-                    {this.state.lesson.content}
-                    </Paragraph>
-                </Typography>
+                <LessonCard data={this.state.lesson} />
+                {/* {this.state.lesson} */}
                 <Divider>Comments</Divider>
-                <CustomForm />
-                <Comments />
+                <Comments data={this.state.lesson.comments}/>
+                <CustomForm lessonId={this.state.lesson.id}/>
             </div>
         )
     }
-};
-
+}
 
 export default LessonDetail
 

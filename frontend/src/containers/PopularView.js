@@ -13,7 +13,6 @@ class Popular extends React.Component {
 
     state = {
         response: {},
-
     }
 
     componentDidMount() {
@@ -22,8 +21,6 @@ class Popular extends React.Component {
                 this.setState({
                     response: res.data,
                 });
-                // console.log(res.data)
-                // console.log(res.headers)
             })
     }
 
