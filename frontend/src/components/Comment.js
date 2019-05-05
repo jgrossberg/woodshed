@@ -3,7 +3,7 @@ import { List, Avatar } from 'antd';
 
 
 const Comments = (props) => {
-  console.log(props)  
+  // console.log(props)  
   return (
         <List
         itemLayout="horizontal"

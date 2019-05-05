@@ -16,17 +16,19 @@ class CustomForm extends React.Component {
       const lessonId = this.props.lessonId;
 
       try {
-      const res = await axios.post('http://127.0.0.1:8000/api/comments/', {
-        author_name: authorName,
-        author_email: authorEmail,
-        content: content,
-        lesson: lessonId
-      });
-      return console.log(res);
-    }
-    catch (error) {
-      return console.err(error);
-    }    
+        const res = await axios.post('http://127.0.0.1:8000/api/comments/', {
+          author_name: authorName,
+          author_email: authorEmail,
+          content: content,
+          lesson: lessonId
+        });
+        this.forceUpdate()
+
+        return console.log(res);
+      }
+      catch (error) {
+        return console.err(error);
+      }    
 
     }
 

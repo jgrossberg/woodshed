@@ -10,26 +10,22 @@ class UserSerializer(serializers.Serializer):
 
 
 class LessonSerializer(serializers.ModelSerializer):
-	owner = UserSerializer(many=False, read_only=True)
-	
-	
+
 	class Meta:
 		model = Lesson
 
 		fields = (
 			'id',
 			'created_by',
-			'created_on',
-			'title',
-			'owner',
-			'content',
-            'votes',
-			'num_logs',
-			'num_comments',
 			'author_name',
-			'comments'
+			'title',
+			'content',
+			'created_on',
+			'num_logs',
+			'num_stars',
+			'num_comments',
+			'comments',
 		)
-		# depth = 1
 
 
 

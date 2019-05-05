@@ -1,6 +1,7 @@
 import React from 'react';
-import { List, Avatar, Icon } from 'antd';
+import { List, Icon } from 'antd';
 
+import { Link } from 'react-router-dom';
 
 const IconText = ({ type, text }) => (
   <span>
@@ -12,34 +13,30 @@ const IconText = ({ type, text }) => (
 const Lessons = (props) => {
   return (
       <List
-      itemLayout="vertical"
-      size="large"
+      size="small"
       pagination={{
         onChange: (page) => {
           console.log(page);
         },
-        pageSize: 3,
+        pageSize: 20,
       }}
       dataSource={props.data}
       renderItem={item => (
         <List.Item
+          // itemLayout="horizontal"
           key={item.title}
           actions={[
             <IconText type="calendar" text={item.num_logs} />, 
-            <IconText type="star" text="156" />, 
+            <IconText type="star" text={item.num_stars} />, 
             <IconText type="message" text={item.num_comments} />]}
-          extra={<img width={180} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
         >
+        
           <List.Item.Meta
-            avatar={<Avatar style={{ backgroundColor: '#87d068' }} icon="user" />}
             title={
-              <a href={`/lessons/${item.id}`}>{item.title}</a>
+              <Link to={`/lessons/${item.id}`}>{item.title}</Link>
             }
-            description={item.description}
-          />
-          <small>by: {item.author_name}</small><br></br>
+            />
 
-          {item.content}
         </List.Item>
       )}
     />

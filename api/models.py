@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Lesson(models.Model):
 	created_by = models.ForeignKey(User, 
 		related_name='owner',
@@ -10,7 +11,7 @@ class Lesson(models.Model):
 	created_on = models.DateTimeField(auto_now=True)
 	title = models.CharField(max_length = 150)
 	content = models.TextField()
-	votes = models.IntegerField(default=0)
+	stars = models.ManyToManyField(User)
 
 	def __str__(self):
 		return self.title
@@ -18,6 +19,9 @@ class Lesson(models.Model):
 	def num_logs(self):
 		results = Log.objects.filter(lesson = self.id)
 		return len(results)
+
+	def num_stars(self):
+		return self.stars.count()
 
 	def num_comments(self):
 		results = Comment.objects.filter(lesson = self.id)
@@ -30,7 +34,6 @@ class Lesson(models.Model):
 	def comments(self):
 		query = list(Comment.objects.filter(lesson=self.id))
 		comment_list = []
-		print(len(query))
 		for c in query:
 			author = c.author_name
 			content = c.content
@@ -40,9 +43,6 @@ class Lesson(models.Model):
 			comment_list.append(comment)
 
 		return comment_list
-
-		# return [{'id' : 1, 'comment' : 'comment1'}, 
-		# 		{'id' : 2, 'comment' : 'comment2'}]
 
 
 class Log(models.Model):
