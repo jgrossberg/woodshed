@@ -15,19 +15,13 @@ const Description = ({ term, children, span = 12 }) => (
     </Col>
   );
 
+
+
 class LessonDetail extends React.Component {
 
     state = {
         lesson: {},
-    }
-    
-    content = (
-        <Row>
-            <Description term="Written by">{this.state.lesson.author_name}Jonah Grossbaaerg</Description>
-            <Description term="Submitted">2017-01-10</Description>
-        </Row>
-    );
-    
+    } 
 
     componentWillMount() {
         const lessonID = this.props.match.params.lessonID;
@@ -38,9 +32,13 @@ class LessonDetail extends React.Component {
                 });
             })
     }
+
+    formatDate(string) {
+        return new Date(string).toLocaleDateString()
+    }
+
     
     render () {
-        // console.log(this.state)
         return (
             <div> 
                 <PageHeader
@@ -52,7 +50,16 @@ class LessonDetail extends React.Component {
                     ]}
                 >
                     <div className="wrap">
-                        <div className="content padding">{this.content}</div>
+                        <div className="content padding">
+        
+                        <Row>
+                            <Description term="Written by">{this.state.lesson.author_name}</Description>
+                            {/* <Description term="Written by">{this.dateString}</Description> */}
+                            <Description term="Submitted">{this.formatDate(this.state.lesson.created_on)}</Description>
+                        </Row>
+                        
+                        
+                        </div>
                     </div>
                 </PageHeader>
 

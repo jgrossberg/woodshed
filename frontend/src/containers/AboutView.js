@@ -12,10 +12,9 @@ class About extends React.Component {
                 <Typography>
                     <Title>What is this fantasy?</Title>
                     <Paragraph>
-                    In the process of internal desktop applications development, 
-                    many different design specs and implementations would be involved, 
-                    which might cause designers and developers difficulties and duplication 
-                    and reduce the efficiency of development.
+                    The woodshed is where I post my guitar practice pieces. You can use this website
+                    to build your own practice routine by viewing, starring, and / or adding practices
+                    to your woodshed. 
                     </Paragraph>
                 </Typography>
             </div>

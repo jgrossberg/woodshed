@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, } from 'antd';
+import { Input, Select, Icon } from 'antd';
 
 import CustomHeader from '../components/Header';
 
@@ -9,7 +10,6 @@ const { Content, Footer } = Layout;
 const CustomLayout = (props) => {
     return (
         <Layout className="layout">
-        
         {/* <Header> */}
             <CustomHeader />
         {/* </Header> */}
@@ -21,9 +21,11 @@ const CustomLayout = (props) => {
             {props.children}
             </div>
         </Content>
+
         <Footer style={{ textAlign: 'center' }}>
             Jonah Grossberg
         </Footer>
+        
         </Layout>
     )
 }

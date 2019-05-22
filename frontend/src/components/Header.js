@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { Menu, Icon } from 'antd';
 
-const SubMenu = Menu.SubMenu;
-
 class CustomHeader extends React.Component {
   
   state = {
@@ -33,10 +31,7 @@ class CustomHeader extends React.Component {
             </Link>
           </Menu.Item>
 
-          <SubMenu title={<span className="submenu-title-wrapper"><Link to="/lessons">Lessons</Link></span>}>
-            <Menu.Item key="setting:1"><Link to="/lessons">Browse all</Link></Menu.Item>
-            <Menu.Item key="setting:2"><Link to="/popular">Popular</Link></Menu.Item>
-          </SubMenu>
+          <Menu.Item><Link to="/lessons">Browse all</Link></Menu.Item>
           
           <Menu.Item key="about">
             <Link to="/about"> 

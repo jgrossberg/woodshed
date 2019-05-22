@@ -35,10 +35,11 @@ class Lesson(models.Model):
 		query = list(Comment.objects.filter(lesson=self.id))
 		comment_list = []
 		for c in query:
+			comment_id = c.id
 			author = c.author_name
 			content = c.content
 			comment = {
-				'author_name' : author, 'content' : content
+				'author_name' : author, 'content' : content, 'id' : comment_id
 			}
 			comment_list.append(comment)
 
