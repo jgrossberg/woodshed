@@ -1,7 +1,7 @@
 from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 
-from api import views
+from woodshed.api import views
 
 router = DefaultRouter()
 router.register(r'lessons', views.LessonViewSet)

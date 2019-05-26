@@ -1,7 +1,7 @@
 import os
 from django.core.management import execute_from_command_line
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 
 print('type `manage.py help` for help, or hit enter to start server')
 
