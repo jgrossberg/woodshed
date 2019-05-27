@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout, } from 'antd';
-import { Input, Select, Icon } from 'antd';
 
 import CustomHeader from '../components/Header';
 
